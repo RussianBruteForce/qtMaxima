@@ -4,3 +4,4 @@
 Makefile*
 *build-*
 moc_*
+ui_*
