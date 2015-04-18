@@ -1,16 +1,16 @@
 #include "qtmaximasimplefrontend.h"
 
 QtMaximaSimpleFrontend::QtMaximaSimpleFrontend(QWidget* parent) :
-	QWidget(parent)
+	QtMaximaFrontend(parent),
+	tex(true)
 {
 	requestEdit = new QLineEdit(this);
 	requestEdit->setEnabled(false);
 	connect(requestEdit, &QLineEdit::returnPressed,
 		this, &QtMaximaSimpleFrontend::onCalculate);
 
-	outputBrowser = new QTextBrowser;
-	outputBrowser->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
-	outputBrowser->setText("Hi there!<br>");
+	outputBrowser = new Output(this);
+	//outputBrowser->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
 
 	inputLayout = new QHBoxLayout();
 	inputLayout->addWidget(requestEdit);
@@ -30,17 +30,28 @@ void QtMaximaSimpleFrontend::onBackendReady()
 	requestEdit->setEnabled(true);
 }
 
-void QtMaximaSimpleFrontend::onNewStringIsReady(const QString& str)
+void QtMaximaSimpleFrontend::onNewLineIsReady(const QString& str)
 {
-	outputBrowser->append(str.trimmed());
-	auto vsb = outputBrowser->verticalScrollBar();
-	vsb->setValue(vsb->maximum());
+	if (str.contains("false"))
+		return;
+	outputS.append(str.trimmed());
+	outputBrowser->append("(%o" %
+			      QString::number(outputS.size()-1) %
+			      ") " %
+			      str.trimmed(), tex);
 }
 
 void QtMaximaSimpleFrontend::onCalculate()
 {
 	QString request = requestEdit->text();
-	request += ";\n";
-	outputBrowser->append(request);
-	emit calculateItPlease(request);
+	inputS.append(request);
+	outputBrowser->append("(%i" %
+			      QString::number(inputS.size()-1) %
+			      ") " %
+			      request  % ";\n", false);
+
+	if (tex)
+		emit calculateItPlease("tex (" % request % ", false)"  % ";\n");
+	else
+		emit calculateItPlease(request  % ";\n");
 }

@@ -3,16 +3,22 @@
 
 #include <QObject>
 #include "qtmaximasimplefrontend.h"
+#include "qtmaximastaticintegrateanddiffinterface.h"
 #include "qtmaximabackend.h"
 
 typedef QtMaximaBackend Backend;
-typedef QtMaximaSimpleFrontend Frontend;
+typedef QtMaximaFrontend Frontend;
+
+enum Interface {
+	Interactive,
+	Static
+};
 
 class QtMaxima : public QObject
 {
 	Q_OBJECT
 public:
-	explicit QtMaxima(QObject *parent = 0);
+	explicit QtMaxima(Interface i, QObject *parent = 0);
 	~QtMaxima();
 
 signals:

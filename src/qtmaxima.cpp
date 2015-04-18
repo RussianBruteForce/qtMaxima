@@ -1,18 +1,21 @@
 #include "qtmaxima.h"
 
-QtMaxima::QtMaxima(QObject *parent) :
+QtMaxima::QtMaxima(Interface i, QObject *parent) :
         QObject(parent)
 {
-	frontend = new Frontend;
 	backend = new Backend;
-	connect(frontend, &Frontend::calculateItPlease,
-		backend, &Backend::submit);
-	connect(backend, &Backend::ready,
-		frontend, &Frontend::onBackendReady);
-	connect(frontend, &Frontend::askString,
-		backend, &Backend::readLine);
-	connect(backend, &Backend::newLineIsHere,
-		frontend, &Frontend::onNewStringIsReady);
+
+	if (i == Static)
+		frontend = new QtMaximaStaticIntegrateAndDiffInterface;
+	else
+		frontend = new QtMaximaSimpleFrontend;
+
+	connect(frontend, SIGNAL(calculateItPlease(QString)),
+		backend, SLOT(submit(QString)));
+	connect(backend, SIGNAL(ready()),
+		frontend, SLOT(onBackendReady()));
+	connect(backend, SIGNAL(newLineIsHere(QString)),
+		frontend, SLOT(onNewLineIsReady(QString)));
 	backend->go();
 	frontend->show();
 	qDebug() << "kek =)";
@@ -20,6 +23,6 @@ QtMaxima::QtMaxima(QObject *parent) :
 
 QtMaxima::~QtMaxima()
 {
-	backend->deleteLater();
-	frontend->deleteLater();
+	delete backend;
+	delete frontend;
 }

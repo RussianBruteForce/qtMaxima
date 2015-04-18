@@ -9,8 +9,13 @@
 #include <QPushButton>
 #include <QTextBrowser>
 #include <QScrollBar>
+#include <QStringBuilder>
+#include "qtmaximaoutputwidget.h"
+#include "qtmaximafrontend.h"
 
-class QtMaximaSimpleFrontend : public QWidget
+typedef QtMaximaOutputWidget Output;
+
+class QtMaximaSimpleFrontend : public QtMaximaFrontend
 {
 	Q_OBJECT
 public:
@@ -23,16 +28,18 @@ signals:
 
 public slots:
 	void onBackendReady();
-	void onNewStringIsReady(const QString& str);
+	void onNewLineIsReady(const QString& str);
 
 private slots:
 	void onCalculate();
 
 private:
+	bool tex;
 	QVBoxLayout *mainLayout;
 	QHBoxLayout *inputLayout;
 	QLineEdit *requestEdit;
-	QTextBrowser *outputBrowser;
+	Output *outputBrowser;
+	QStringList inputS, outputS; //for imitating %i and %o
 };
 
 #endif // QTMAXIMASIMPLEFRONTEND_H

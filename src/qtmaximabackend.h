@@ -29,7 +29,7 @@ private:
 	QProcess *mProcess;
 	bool busy;
 
-	bool startMaxima();
+	void startMaxima();
 };
 
 #endif // QTMAXIMABACKEND_H

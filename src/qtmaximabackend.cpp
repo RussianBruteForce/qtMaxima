@@ -38,7 +38,7 @@ void QtMaximaBackend::onReady()
 	emit newLineIsHere(QString(mProcess->readAll()));
 }
 
-bool QtMaximaBackend::startMaxima()
+void QtMaximaBackend::startMaxima()
 {
 	QString command("maxima");
 	QStringList args;

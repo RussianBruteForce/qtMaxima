@@ -20,7 +20,7 @@
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_QtMaximaSimpleFrontend_t {
     QByteArrayData data[9];
-    char stringdata[110];
+    char stringdata[108];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,14 +35,14 @@ QT_MOC_LITERAL(2, 41, 0), // ""
 QT_MOC_LITERAL(3, 42, 7), // "request"
 QT_MOC_LITERAL(4, 50, 9), // "askString"
 QT_MOC_LITERAL(5, 60, 14), // "onBackendReady"
-QT_MOC_LITERAL(6, 75, 18), // "onNewStringIsReady"
-QT_MOC_LITERAL(7, 94, 3), // "str"
-QT_MOC_LITERAL(8, 98, 11) // "onCalculate"
+QT_MOC_LITERAL(6, 75, 16), // "onNewLineIsReady"
+QT_MOC_LITERAL(7, 92, 3), // "str"
+QT_MOC_LITERAL(8, 96, 11) // "onCalculate"
 
     },
     "QtMaximaSimpleFrontend\0calculateItPlease\0"
     "\0request\0askString\0onBackendReady\0"
-    "onNewStringIsReady\0str\0onCalculate"
+    "onNewLineIsReady\0str\0onCalculate"
 };
 #undef QT_MOC_LITERAL
 
@@ -88,7 +88,7 @@ void QtMaximaSimpleFrontend::qt_static_metacall(QObject *_o, QMetaObject::Call _
         case 0: _t->calculateItPlease((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 1: _t->askString(); break;
         case 2: _t->onBackendReady(); break;
-        case 3: _t->onNewStringIsReady((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 3: _t->onNewLineIsReady((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         case 4: _t->onCalculate(); break;
         default: ;
         }
@@ -111,7 +111,7 @@ void QtMaximaSimpleFrontend::qt_static_metacall(QObject *_o, QMetaObject::Call _
 }
 
 const QMetaObject QtMaximaSimpleFrontend::staticMetaObject = {
-    { &QWidget::staticMetaObject, qt_meta_stringdata_QtMaximaSimpleFrontend.data,
+    { &QtMaximaFrontend::staticMetaObject, qt_meta_stringdata_QtMaximaSimpleFrontend.data,
       qt_meta_data_QtMaximaSimpleFrontend,  qt_static_metacall, Q_NULLPTR, Q_NULLPTR}
 };
 
@@ -126,12 +126,12 @@ void *QtMaximaSimpleFrontend::qt_metacast(const char *_clname)
     if (!_clname) return Q_NULLPTR;
     if (!strcmp(_clname, qt_meta_stringdata_QtMaximaSimpleFrontend.stringdata))
         return static_cast<void*>(const_cast< QtMaximaSimpleFrontend*>(this));
-    return QWidget::qt_metacast(_clname);
+    return QtMaximaFrontend::qt_metacast(_clname);
 }
 
 int QtMaximaSimpleFrontend::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QWidget::qt_metacall(_c, _id, _a);
+    _id = QtMaximaFrontend::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
