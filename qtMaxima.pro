@@ -10,7 +10,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = qtmaxima
 TEMPLATE = app
-CONFIG += c++11
+QMAKE_CXXFLAGS += -std=gnu++1y
 
 
 SOURCES += src/main.cpp\
@@ -18,8 +18,7 @@ SOURCES += src/main.cpp\
     src/qtmaximasimplefrontend.cpp \
     src/qtmaxima.cpp \
     src/qtmaximaoutputwidget.cpp \
-    src/qtmaximastaticintegrateanddiffinterface.cpp \
-    src/qtmaximafrontend.cpp
+    src/qtmaximastaticintegrateanddiffinterface.cpp
 
 HEADERS  += \
     src/qtmaximabackend.h \
