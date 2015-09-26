@@ -5,5 +5,9 @@ It provides interactive dialogue with maxima and optional formula rendering (pow
 # Dependencies
 Qt5 & c++14 compiler
 
+Also you need Maxima been installed.
+
+On Windows move compiled stuff and resources into folder with `maxima.exe`. And there `Setup.exe` for you system in `bin` directory. Choose path with `maxima.exe`.
+
 # Compilation
 ``` qmake && make ```
