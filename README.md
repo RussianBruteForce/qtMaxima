@@ -11,3 +11,6 @@ On Windows move compiled stuff and resources into folder with `maxima.exe`. And 
 
 # Compilation
 ``` qmake && make ```
+
+# Disclaimer
+As for now, it's a lab-project. If you want to contribute -- feel free to contact me or fork this project.
